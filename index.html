@@ -1,154 +1,238 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BREONN STORE</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Segoe UI', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background:#000;
-    color:white;
-    text-align:center;
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0e0e11 0%, #1a1a2e 50%, #16213e 100%);
+    color: #ffffff;
+    text-align: center;
+    overflow-x: hidden;
+    min-height: 100vh;
 }
 
-.banner{
-    width:100%;
-    height:300px;
-    background:url('banner.jpg') center/cover no-repeat;
-    display:flex;
-    align-items:end;
-    justify-content:center;
-    padding-bottom:20px;
+header img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    filter: brightness(1.1) contrast(1.05);
 }
 
-.banner h1{
-    font-size:28px;
-    background:rgba(0,0,0,0.6);
-    padding:10px 20px;
-    border-radius:10px;
+.main {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
 }
 
-.container{
-    padding:30px 15px 60px;
-    display:flex;
-    flex-direction:column;
-    gap:25px;
-    align-items:center;
+h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    background: linear-gradient(45deg, #00ff88, #00cc6a, #00ff88);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
-.card{
-    width:95%;
-    max-width:380px;
-    padding:25px;
-    border-radius:20px;
-    background:#111;
-    box-shadow: 0 0 20px rgba(255,140,0,0.3);
-    transition:0.3s;
+@keyframes glow {
+    from { filter: drop-shadow(0 0 10px #00ff88); }
+    to { filter: drop-shadow(0 0 25px #00ff88); }
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow: 0 0 30px rgba(255,140,0,0.6);
+.subtitle {
+    color: #b0b0b0;
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    font-weight: 300;
 }
 
-.plan{
-    font-size:22px;
-    font-weight:bold;
-    margin-bottom:15px;
+.telegram {
+    margin-bottom: 50px;
 }
 
-.btn{
-    display:inline-block;
-    text-decoration:none;
-    padding:12px 28px;
-    border-radius:30px;
-    font-weight:bold;
-    background: linear-gradient(90deg,#ff9900,#ff6600);
-    color:white;
-    transition:0.3s;
+.telegram a {
+    display: inline-block;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    background: linear-gradient(45deg, #1f1f26, #2a2a33);
+    border: 2px solid #00ff88;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
 }
 
-.btn:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 20px #ff6600;
+.telegram a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
 }
 
-.telegram-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#0088cc;
-    color:white;
-    padding:15px 20px;
-    border-radius:50px;
-    font-weight:bold;
-    text-decoration:none;
-    box-shadow:0 0 20px rgba(0,136,204,0.6);
-    transition:0.3s;
+.telegram a:hover::before {
+    left: 100%;
 }
 
-.telegram-btn:hover{
-    transform:scale(1.1);
+.telegram a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: #000;
 }
 
-footer{
-    margin:40px 0 20px;
-    font-size:12px;
-    color:#666;
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.card {
+    background: rgba(21, 21, 27, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 35px 25px;
+    border: 1px solid rgba(34, 34, 43, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00ff88, #00cc6a, #00ff88);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: #00ff88;
+    box-shadow: 0 25px 50px rgba(0, 255, 136, 0.3);
+    background: rgba(21, 21, 27, 0.95);
+}
+
+.card h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ffffff, #e0e0e0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.6);
+    opacity: 0.95;
+}
+
+/* Responsivo extra para mobile */
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .card {
+        padding: 25px 20px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="banner">
-    <h1>🔥 BREONN STORE 🔥</h1>
+<header>
+<img src="banner.jpg" alt="BREONN STORE">
+</header>
+
+<div class="main">
+<h1>BREONN STORE</h1>
+<p class="subtitle">Pato Team - Escolha seu período</p>
+
+<div class="telegram">
+<a href="https://t.me/breonnmodz" target="_blank">
+Falar no Telegram
+</a>
 </div>
 
 <div class="container">
-
 <div class="card">
-<div class="plan">Pato Team - 1 Dia</div>
-<a class="btn" href="https://go.tribopay.com.br/qqfmley8qp?affh=x5wgclgrn0">Comprar Agora</a>
-</div>
-
-<div class="card">
-<div class="plan">Pato Team - 3 Dias</div>
-<a class="btn" href="https://go.tribopay.com.br/uumgyfiarg?affh=hhveq7ou8t">Comprar Agora</a>
+<h2>1 Dia</h2>
+<a class="btn" href="https://go.tribopay.com.br/qqfmley8qp?affh=x5wgclgrn0" target="_blank">Comprar</a>
 </div>
 
 <div class="card">
-<div class="plan">Pato Team - 7 Dias</div>
-<a class="btn" href="https://go.tribopay.com.br/u55svgvlpt?affh=wrh4k07eft">Comprar Agora</a>
+<h2>3 Dias</h2>
+<a class="btn" href="https://go.tribopay.com.br/uumgyfiarg?affh=hhveq7ou8t" target="_blank">Comprar</a>
 </div>
 
 <div class="card">
-<div class="plan">Pato Team - 15 Dias</div>
-<a class="btn" href="https://go.tribopay.com.br/dqdqq3dsif?affh=wxku54jbmb">Comprar Agora</a>
+<h2>7 Dias</h2>
+<a class="btn" href="https://go.tribopay.com.br/u55svgvlpt?affh=wrh4k07eft" target="_blank">Comprar</a>
 </div>
 
 <div class="card">
-<div class="plan">Pato Team - 30 Dias</div>
-<a class="btn" href="https://go.tribopay.com.br/i8qvxtthwf?affh=hsub5toe4i">Comprar Agora</a>
+<h2>15 Dias</h2>
+<a class="btn" href="https://go.tribopay.com.br/dqdqq3dsif?affh=wxku54jbmb" target="_blank">Comprar</a>
 </div>
 
+<div class="card">
+<h2>30 Dias</h2>
+<a class="btn" href="https://go.tribopay.com.br/i8qvxtthwf?affh=hsub5toe4i" target="_blank">Comprar</a>
 </div>
-
-<a class="telegram-btn" href="https://t.me/breonnmodz">
-📲 Fale no Telegram
-</a>
-
-<footer>
-© 2026 BREONN STORE - Todos os direitos reservados
-</footer>
+</div>
+</div>
 
 </body>
 </html>
