@@ -6,298 +6,155 @@
 <title>BREONN STORE</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #0e0e11 0%, #1a1a2e 50%, #16213e 100%);
-    color: #ffffff;
-    text-align: center;
-    overflow-x: hidden;
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 40%, #16213e 100%);
+    color: #fff;
     min-height: 100vh;
-    position: relative;
-    cursor: none; /* Esconde cursor padrão */
+    overflow-x: hidden;
 }
 
-.particles, .mouse-trail {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
+/* Fundo partículas leve */
+.particles {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
 }
-
 .particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(0, 255, 136, 0.6);
-    border-radius: 50%;
-    animation: float 6s infinite linear;
+    position: absolute; width: 3px; height: 3px;
+    background: rgba(0,255,136,0.5); border-radius: 50%;
+    animation: float 8s infinite linear;
 }
-
 @keyframes float {
     0% { transform: translateY(100vh) scale(0); opacity: 0; }
     10% { opacity: 1; }
     90% { opacity: 1; }
-    100% { transform: translateY(-100px) scale(1); opacity: 0; }
+    100% { transform: translateY(-50px) scale(1); opacity: 0; }
 }
 
-/* Cursor customizado */
+/* Cursor minimalista */
 .cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, #00ff88 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: transform 0.1s ease;
+    position: fixed; width: 14px; height: 14px;
+    background: conic-gradient(#00ff88, transparent);
+    border-radius: 50%; pointer-events: none;
+    z-index: 9999; transition: transform 0.2s ease;
+    will-change: transform;
 }
-
-.cursor.hover {
-    transform: scale(1.5);
-    box-shadow: 0 0 20px #00ff88;
-}
-
-/* Trail do mouse */
-.trail {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background: rgba(0, 255, 136, 0.8);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    animation: trailFade 0.6s ease-out forwards;
-}
-
-@keyframes trailFade {
-    0% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0); }
-}
+.cursor.hover { transform: scale(1.8) !important; box-shadow: 0 0 20px #00ff88; }
 
 header img {
-    width: 100%;
-    max-height: 250px;
-    object-fit: cover;
-    filter: brightness(1.1) contrast(1.05);
-    position: relative;
-    z-index: 2;
+    width: 100%; max-height: 280px; object-fit: cover;
+    filter: brightness(1.15) contrast(1.1);
+    z-index: 2; position: relative;
 }
 
 .main {
-    max-width: 1400px; /* Maior para PC */
-    margin: 50px auto;
-    padding: 0 40px; /* Mais padding desktop */
-    position: relative;
-    z-index: 2;
+    max-width: 1800px; margin: 0 auto; padding: 60px 40px;
+    position: relative; z-index: 2; text-align: center;
 }
 
 h1 {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(2.5rem, 8vw, 5rem); /* Maior no PC */
-    background: linear-gradient(45deg, #00ff88, #00cc6a, #00ff88);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 15px;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-    animation: glow 2s ease-in-out infinite alternate;
+    font-family: 'Orbitron', monospace; font-size: clamp(3rem, 10vw, 6rem);
+    background: linear-gradient(45deg, #00ff88 0%, #00cc6a 50%, #00ff88 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 20px; text-shadow: 0 0 30px rgba(0,255,136,0.6);
+    animation: glow 2.5s ease-in-out infinite alternate;
 }
-
-@keyframes glow {
-    from { filter: drop-shadow(0 0 10px #00ff88); }
-    to { filter: drop-shadow(0 0 25px #00ff88); }
+@keyframes glow { 
+    from { filter: drop-shadow(0 0 15px #00ff88); }
+    to { filter: drop-shadow(0 0 35px #00ff88); }
 }
 
 .subtitle {
-    color: #b0b0b0;
-    font-size: 1.4rem; /* Ajuste PC */
-    margin-bottom: 40px;
-    font-weight: 300;
-}
-
-.telegram {
-    margin-bottom: 50px;
+    color: #b8b8b8; font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 300; margin-bottom: 50px;
 }
 
 .telegram a, .btn {
-    cursor: none; /* Usa cursor custom */
+    cursor: none; display: inline-block; padding: 18px 50px;
+    border-radius: 50px; text-decoration: none; font-weight: 600;
+    font-size: 1.15rem; background: linear-gradient(45deg, #1e1e28, #2b2b38);
+    border: 2px solid #00ff88; color: #fff; position: relative; overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23,1,0.32,1); box-shadow: 0 12px 35px rgba(0,255,136,0.25);
+    text-transform: uppercase; letter-spacing: 1px;
 }
-
-.telegram a {
-    display: inline-block;
-    padding: 16px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.1rem;
-    background: linear-gradient(45deg, #1f1f26, #2a2a33);
-    border: 2px solid #00ff88;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
-}
-
 .telegram a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.6s;
 }
-
-.telegram a:hover::before {
-    left: 100%;
-}
-
+.telegram a:hover::before { left: 100%; }
 .telegram a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
-    background: linear-gradient(45deg, #00ff88, #00cc6a);
-    color: #000;
+    transform: translateY(-6px); box-shadow: 0 25px 50px rgba(0,255,136,0.5);
+    background: linear-gradient(45deg, #00ff88, #00cc6a); color: #111;
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Melhor para PC */
-    gap: 40px; /* Mais espaço desktop */
-    margin-top: 20px;
-    justify-items: center;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px; justify-items: center; margin-top: 40px;
 }
-
 .card {
-    background: rgba(21, 21, 27, 0.8);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 40px 30px; /* Maior padding PC */
-    border: 1px solid rgba(34, 34, 43, 0.5);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 280px; /* Limita largura cards */
-    opacity: 0;
-    transform: translateY(20px);
-    animation: cardAppear 0.5s ease forwards;
+    background: rgba(18,18,25,0.9); backdrop-filter: blur(20px);
+    border-radius: 32px; padding: 50px 40px; border: 1px solid rgba(40,40,50,0.5);
+    transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+    position: relative; overflow: hidden; width: 100%; max-width: 350px;
+    opacity: 0; transform: translateY(40px) scale(0.95);
+    animation: cardSlide 0.7s ease forwards;
 }
-
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.15s; }
-.card:nth-child(3) { animation-delay: 0.2s; }
-.card:nth-child(4) { animation-delay: 0.25s; }
-.card:nth-child(5) { animation-delay: 0.3s; }
-
-@keyframes cardAppear {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.card:nth-child(1) { animation-delay: 0.15s; }
+.card:nth-child(2) { animation-delay: 0.25s; }
+.card:nth-child(3) { animation-delay: 0.35s; }
+.card:nth-child(4) { animation-delay: 0.45s; }
+.card:nth-child(5) { animation-delay: 0.55s; }
+@keyframes cardSlide {
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #00ff88, #00cc6a, #00ff88);
-    opacity: 0;
-    transition: opacity 0.3s;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, transparent, #00ff88, #00cc6a, #00ff88, transparent);
+    opacity: 0; transition: opacity 0.4s;
 }
-
-.card:hover::before {
-    opacity: 1;
-}
-
+.card:hover::before { opacity: 1; }
 .card:hover {
-    transform: translateY(-12px) scale(1.02);
-    border-color: #00ff88;
-    box-shadow: 0 25px 50px rgba(0, 255, 136, 0.3);
-    background: rgba(21, 21, 27, 0.95);
+    transform: translateY(-20px) scale(1.05); border-color: #00ff88;
+    box-shadow: 0 40px 80px rgba(0,255,136,0.4); background: rgba(18,18,25,0.98);
 }
 
 .card h2 {
-    font-family: 'Orbitron', monospace;
-    font-size: 2rem; /* Maior no PC */
-    margin-bottom: 20px;
-    font-weight: 700;
-    background: linear-gradient(45deg, #ffffff, #e0e0e0);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: 'Orbitron', monospace; font-size: clamp(2rem, 6vw, 2.6rem);
+    margin-bottom: 30px; font-weight: 800;
+    background: linear-gradient(45deg, #fff, #ddd); -webkit-background-clip: text;
+    background-clip: text; -webkit-text-fill-color: transparent;
 }
 
 .btn {
-    display: inline-block;
-    padding: 14px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    background: linear-gradient(45deg, #00ff88, #00cc6a);
-    color: #000;
-    font-weight: 700;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(45deg, #00ff88, #00cc6a); color: #111;
+    font-weight: 800; font-size: 1.1rem; box-shadow: 0 15px 40px rgba(0,255,136,0.5);
 }
-
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.6);
-    opacity: 0.95;
+    transform: translateY(-4px) scale(1.08); box-shadow: 0 30px 60px rgba(0,255,136,0.7);
 }
 
 .help-box {
-    background: rgba(0,255,136,0.1);
-    border: 1px solid #00ff88;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 30px 0;
-    color: #ccc;
-    font-size: 0.95rem;
+    background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 20px; padding: 30px 40px; margin: 50px 0;
+    color: #ccc; font-size: 1.05rem; backdrop-filter: blur(15px);
 }
 
-/* Media queries melhoradas */
-@media (max-width: 768px) {
-    .main { padding: 0 20px; }
-    .container { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
-}
-
-@media (max-width: 480px) {
-    .container { grid-template-columns: 1fr; gap: 20px; }
-    .card { padding: 25px 20px; max-width: none; }
-}
+/* Responsivo perfeito */
+@media (max-width: 1200px) { .container { gap: 45px; } }
+@media (max-width: 900px) { .container { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 35px; .main { padding: 0 25px; } } }
+@media (max-width: 600px) { .container { grid-template-columns: 1fr; gap: 30px; .card { padding: 35px 30px; max-width: none; } } }
 </style>
 </head>
 
 <body>
 <div class="particles" id="particles"></div>
-<div class="mouse-trail" id="mouseTrail"></div>
 <div class="cursor" id="cursor"></div>
 
-<header>
-<img src="banner.jpg" alt="BREONN STORE">
-</header>
+<header><img src="banner.jpg" alt="BREONN STORE"></header>
 
 <div class="main">
 <h1>BREONN STORE</h1>
@@ -317,22 +174,18 @@ Segure o botão "Comprar" → <strong>"Abrir no navegador"</strong> ou copie o l
 <h2>1 Dia</h2>
 <a class="btn" href="https://go.tribopay.com.br/yklp5?affh=x5wgclgrn0" target="_blank" rel="noopener">Comprar</a>
 </div>
-
 <div class="card">
 <h2>3 Dias</h2>
 <a class="btn" href="https://go.tribopay.com.br/zo7dl?affh=hhveq7ou8t" target="_blank" rel="noopener">Comprar</a>
 </div>
-
 <div class="card">
 <h2>7 Dias</h2>
 <a class="btn" href="https://go.tribopay.com.br/cqclz?affh=wrh4k07eft" target="_blank" rel="noopener">Comprar</a>
 </div>
-
 <div class="card">
 <h2>15 Dias</h2>
 <a class="btn" href="https://go.tribopay.com.br/dqdqq3dsif?affh=wxku54jbmb" target="_blank" rel="noopener">Comprar</a>
 </div>
-
 <div class="card">
 <h2>30 Dias</h2>
 <a class="btn" href="https://go.tribopay.com.br/i8qvxtthwf?affh=hsub5toe4i" target="_blank" rel="noopener">Comprar</a>
@@ -341,42 +194,29 @@ Segure o botão "Comprar" → <strong>"Abrir no navegador"</strong> ou copie o l
 </div>
 
 <script>
-    // Partículas flutuantes (mantidas)
-    function createParticle() {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-        particle.style.animationDelay = Math.random() * 2 + 's';
-        document.getElementById('particles').appendChild(particle);
-        setTimeout(() => particle.remove(), 7000);
-    }
-    setInterval(createParticle, 300);
+    // Partículas leves
+    setInterval(() => {
+        const p = document.createElement('div');
+        p.className = 'particle'; p.style.left = Math.random()*100+'%';
+        p.style.animationDuration = (Math.random()*3+5)+'s';
+        document.getElementById('particles').appendChild(p);
+        setTimeout(()=>p.remove(), 8000);
+    }, 350);
 
-    // Cursor custom + trail
+    // Cursor suave otimizado
     const cursor = document.getElementById('cursor');
-    const mouseTrail = document.getElementById('mouseTrail');
+    let mx=0, my=0, cx=0, cy=0;
+    const animate = () => {
+        cx += (mx - cx) * 0.18; cy += (my - cy) * 0.18;
+        cursor.style.transform = `translate(${cx}px, ${cy}px)`;
+        requestAnimationFrame(animate);
+    }; animate();
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-
-        // Cria trail
-        const trail = document.createElement('div');
-        trail.className = 'trail';
-        trail.style.left = e.clientX + 'px';
-        trail.style.top = e.clientY + 'px';
-        mouseTrail.appendChild(trail);
-        setTimeout(() => trail.remove(), 600);
-    });
-
-    // Hover effects no cursor
-    const hoverables = document.querySelectorAll('a, .card, button');
-    hoverables.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    document.addEventListener('mousemove', e => { mx = e.clientX-7; my = e.clientY-7; });
+    document.querySelectorAll('a, .card').forEach(el => {
+        el.onmouseenter = () => cursor.classList.add('hover');
+        el.onmouseleave = () => cursor.classList.remove('hover');
     });
 </script>
-
 </body>
 </html>
