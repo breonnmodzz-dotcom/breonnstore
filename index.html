@@ -3,190 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BREONN STORE</title>
+<title>BREONN CYBER STORE</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;800&family=Orbitron:wght@400;700;900&display=swap');
+
+:root {
+    --neon-cyan: #00f5ff;
+    --neon-purple: #aa00ff;
+    --dark-bg: #05050a;
+    --card-bg: rgba(15,15,25,0.9);
+    --glass: rgba(255,255,255,0.05);
+}
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);
+    background: var(--dark-bg);
+    font-family: 'Exo 2', sans-serif;
     color: #fff;
-    min-height: 100vh;
     overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
 }
 
-header img {
-    width: 100%; height: 300px; object-fit: cover;
-    filter: brightness(1.1) contrast(1.1);
+.matrix-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 20% 80%, var(--neon-cyan) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--neon-purple) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--neon-cyan) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+    z-index: 1;
 }
 
-.content {
-    max-width: 100%; padding: 80px 30px; text-align: center;
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
 }
 
-h1 {
-    font-family: 'Orbitron', monospace; 
-    font-size: clamp(3.5rem, 12vw, 7rem);
-    background: linear-gradient(45deg, #00ff88, #00cc6a, #00ff88);
+header {
+    height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+}
+
+.logo-container {
+    text-align: center; backdrop-filter: blur(30px);
+    background: var(--glass); border: 1px solid var(--neon-cyan);
+    padding: 60px 80px; border-radius: 40px; box-shadow: 0 0 100px rgba(0,245,255,0.3);
+}
+
+.logo {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(4rem, 15vw, 9rem);
+    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple), var(--neon-cyan));
+    background-size: 200% 200%;
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 25px;
-    animation: glow 2s ease-in-out infinite alternate;
-    filter: drop-shadow(0 0 30px rgba(0,255,136,0.7));
+    animation: neon-flow 3s ease-in-out infinite, glitch 0.3s infinite;
+    text-transform: uppercase; letter-spacing: 8px;
 }
 
-@keyframes glow {
-    0% { filter: drop-shadow(0 0 20px #00ff88); }
-    100% { filter: drop-shadow(0 0 40px #00ff88); }
+@keyframes neon-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
-.subtitle {
-    color: #c9d1d9; font-size: clamp(1.3rem, 4vw, 1.8rem);
-    font-weight: 300; margin-bottom: 60px;
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
 }
 
-.plans {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 35px; padding: 0 20px; max-width: 1600px; margin: 0 auto;
+.tagline {
+    font-size: clamp(1.4rem, 4vw, 2rem); color: var(--neon-cyan);
+    margin-top: 30px; font-weight: 300; letter-spacing: 3px;
+    animation: fadeInUp 1s ease 0.5s both;
 }
 
-.plan {
-    flex: 1 1 320px; max-width: 380px; background: rgba(20,22,26,0.95);
-    backdrop-filter: blur(25px); border-radius: 30px; padding: 60px 40px;
-    border: 2px solid rgba(40,46,56,0.5); transition: all 0.4s ease;
-    position: relative; overflow: hidden;
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.plan::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 6px; background: linear-gradient(90deg, #00ff88, #00cc6a, #00ff88);
-    opacity: 0; transition: opacity 0.3s;
+.plans-section {
+    min-height: 100vh; padding: 120px 40px; position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
 }
 
-.plan:hover::before { opacity: 1; }
-.plan:hover {
-    transform: translateY(-25px) scale(1.03); border-color: #00ff88;
-    box-shadow: 0 50px 100px rgba(0,255,136,0.4);
-    background: rgba(20,22,26,1);
-}
-
-.plan h2 {
-    font-family: 'Orbitron', monospace; font-size: clamp(2.2rem, 7vw, 3rem);
-    margin-bottom: 40px; font-weight: 900;
-    background: linear-gradient(45deg, #fff, #e6e6e6);
+.section-title {
+    font-family: 'Exo 2', sans-serif; font-size: clamp(2.5rem, 8vw, 4rem);
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 100px; animation: fadeInUp 1s ease both;
 }
 
-.btn {
-    display: inline-block; padding: 20px 50px; border-radius: 40px;
-    text-decoration: none; background: linear-gradient(45deg, #00ff88, #00cc6a);
-    color: #000; font-weight: 800; font-size: 1.2rem;
-    text-transform: uppercase; letter-spacing: 2px;
-    box-shadow: 0 20px 50px rgba(0,255,136,0.5);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
-    position: relative; overflow: hidden;
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 50px; width: 100%; max-width: 2000px;
 }
 
-.btn:hover {
-    transform: translateY(-8px) scale(1.1);
-    box-shadow: 0 35px 70px rgba(0,255,136,0.7);
+.cyber-card {
+    background: var(--card-bg); backdrop-filter: blur(40px);
+    border: 2px solid var(--glass); border-radius: 25px;
+    padding: 70px 50px; position: relative; overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23,1,0.32,1);
+    animation: cardRise 1s ease both;
 }
 
-.telegram {
-    margin: 80px 0; padding: 25px 0;
+.cyber-card:nth-child(1) { animation-delay: 0.2s; }
+.cyber-card:nth-child(2) { animation-delay: 0.4s; }
+.cyber-card:nth-child(3) { animation-delay: 0.6s; }
+.cyber-card:nth-child(4) { animation-delay: 0.8s; }
+.cyber-card:nth-child(5) { animation-delay: 1s; }
+
+@keyframes cardRise {
+    from { opacity: 0; transform: translateY(100px) scale(0.8); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.telegram a {
-    display: inline-block; padding: 22px 60px; border-radius: 50px;
-    text-decoration: none; font-weight: 700; font-size: 1.3rem;
-    background: linear-gradient(45deg, #21262d, #30363d);
-    border: 3px solid #00ff88; color: #fff;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    box-shadow: 0 20px 50px rgba(0,255,136,0.3);
+.cyber-card::before {
+    content: ''; position: absolute; top: -50%; left: -50%; 
+    width: 200%; height: 200%; background: conic-gradient(var(--neon-cyan), transparent);
+    opacity: 0; transition: opacity 0.5s;
+}
+
+.cyber-card:hover::before { opacity: 0.3; }
+.cyber-card:hover {
+    transform: translateY(-30px) scale(1.05); border-color: var(--neon-cyan);
+    box-shadow: 0 60px 120px rgba(0,245,255,0.4);
+}
+
+.duration {
+    font-family: 'Orbitron', monospace; font-size: clamp(2.8rem, 10vw, 4rem);
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 40px; font-weight: 800;
+}
+
+.action-btn {
+    display: block; width: 100%; padding: 25px;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    color: #000; text-decoration: none; font-family: 'Orbitron', monospace;
+    font-size: 1.4rem; font-weight: 800; text-transform: uppercase;
+    border-radius: 20px; position: relative; overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,245,255,0.5);
+    transition: all 0.4s ease;
+}
+
+.action-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s;
+}
+
+.action-btn:hover::before { left: 100%; }
+.action-btn:hover {
+    transform: scale(1.08); box-shadow: 0 40px 80px rgba(0,245,255,0.7);
+}
+
+.telegram-section {
+    padding: 120px 40px; text-align: center; position: relative; z-index: 2;
+}
+
+.telegram-btn {
+    display: inline-block; padding: 30px 80px;
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+    border: 3px solid var(--neon-cyan); color: #000;
+    font-family: 'Orbitron', monospace; font-size: 1.6rem;
+    font-weight: 900; text-transform: uppercase; letter-spacing: 4px;
+    text-decoration: none; border-radius: 50px;
+    box-shadow: 0 30px 70px rgba(0,245,255,0.4);
     position: relative; overflow: hidden;
     transition: all 0.5s ease;
 }
 
-.telegram a::before {
-    content: ''; position: absolute; top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.7s;
+.telegram-btn:hover {
+    transform: translateY(-15px) scale(1.1);
+    box-shadow: 0 50px 100px rgba(0,245,255,0.6);
 }
 
-.telegram a:hover::before { left: 100%; }
-.telegram a:hover {
-    transform: translateY(-10px); background: linear-gradient(45deg, #00ff88, #00cc6a);
-    box-shadow: 0 35px 70px rgba(0,255,136,0.6); color: #000;
+.support-notice {
+    margin-top: 80px; padding: 50px;
+    background: var(--glass); border: 2px solid var(--neon-purple);
+    border-radius: 30px; backdrop-filter: blur(30px);
+    font-size: 1.3rem; line-height: 1.6;
 }
 
-.support {
-    background: rgba(0,255,136,0.1); border: 2px solid rgba(0,255,136,0.4);
-    border-radius: 25px; padding: 40px; margin: 60px 0;
-    backdrop-filter: blur(20px); color: #c9d1d9; font-size: 1.1rem;
-}
-
-/* RESPONSIVO PERFEITO */
-@media (max-width: 1400px) { .plans { gap: 30px; } }
-@media (max-width: 1100px) { 
-    .plans { flex-direction: column; align-items: center; gap: 40px; }
-    .plan { max-width: 400px; }
+@media (max-width: 1400px) { .plans-grid { gap: 40px; } }
+@media (max-width: 1000px) { 
+    .plans-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
 }
 @media (max-width: 768px) {
-    .content { padding: 50px 20px; }
-    .plan { padding: 45px 30px; }
+    .plans-section, .telegram-section { padding-left: 20px; padding-right: 20px; }
 }
 @media (max-width: 480px) {
-    .plans { gap: 30px; }
-    .plan { padding: 35px 25px; margin: 0 10px; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .cyber-card { margin: 0 10px; }
 }
 </style>
 </head>
 <body>
+<div class="matrix-bg"></div>
 
 <header>
-<img src="banner.jpg" alt="BREONN STORE">
+    <div class="logo-container">
+        <h1 class="logo">BREONN</h1>
+        <p class="tagline">CYBER STORE 2.0</p>
+    </div>
 </header>
 
-<div class="content">
-<h1>BREONN STORE</h1>
-<p class="subtitle">Pato Team - Escolha seu período</p>
+<section class="plans-section">
+    <h2 class="section-title">PLANOS DISPONÍVEIS</h2>
+    <div class="plans-grid">
+        <div class="cyber-card">
+            <div class="duration">01 DIA</div>
+            <a class="action-btn" href="https://go.tribopay.com.br/yklp5?afh=x5wgclgrn0" target="_blank">ATIVAR</a>
+        </div>
+        <div class="cyber-card">
+            <div class="duration">03 DIAS</div>
+            <a class="action-btn" href="https://go.tribopay.com.br/zo7dl?afh=hhveq7ou8t" target="_blank">ATIVAR</a>
+        </div>
+        <div class="cyber-card">
+            <div class="duration">07 DIAS</div>
+            <a class="action-btn" href="https://go.tribopay.com.br/cqclz?afh=wrh4k07eft" target="_blank">ATIVAR</a>
+        </div>
+        <div class="cyber-card">
+            <div class="duration">15 DIAS</div>
+            <a class="action-btn" href="https://go.tribopay.com.br/dqdqq3dsif?afh=wxku54jbmb" target="_blank">ATIVAR</a>
+        </div>
+        <div class="cyber-card">
+            <div class="duration">30 DIAS</div>
+            <a class="action-btn" href="https://go.tribopay.com.br/i8qvxtthwf?afh=hsub5toe4i" target="_blank">ATIVAR</a>
+        </div>
+    </div>
+</section>
 
-<div class="plans">
-<div class="plan">
-<h2>1 Dia</h2>
-<a class="btn" href="https://go.tribopay.com.br/yklp5?affh=x5wgclgrn0" target="_blank">Comprar</a>
-</div>
-<div class="plan">
-<h2>3 Dias</h2>
-<a class="btn" href="https://go.tribopay.com.br/zo7dl?affh=hhveq7ou8t" target="_blank">Comprar</a>
-</div>
-<div class="plan">
-<h2>7 Dias</h2>
-<a class="btn" href="https://go.tribopay.com.br/cqclz?affh=wrh4k07eft" target="_blank">Comprar</a>
-</div>
-<div class="plan">
-<h2>15 Dias</h2>
-<a class="btn" href="https://go.tribopay.com.br/dqdqq3dsif?affh=wxku54jbmb" target="_blank">Comprar</a>
-</div>
-<div class="plan">
-<h2>30 Dias</h2>
-<a class="btn" href="https://go.tribopay.com.br/i8qvxtthwf?affh=hsub5toe4i" target="_blank">Comprar</a>
-</div>
-</div>
-
-<div class="telegram">
-<a href="https://t.me/breonnmodz" target="_blank">Falar no Telegram</a>
-</div>
-
-<div class="support">
-📱 <strong>Problema no Telegram?</strong><br>
-Segure o botão "Comprar" → <strong>"Abrir no navegador"</strong> ou copie o link e abra no Chrome!
-</div>
-</div>
-
+<section class="telegram-section">
+    <a href="https://t.me/breonnmodz" target="_blank" class="telegram-btn">SUPORTE TELEGRAM</a>
+    <div class="support-notice">
+        🚨 <strong>ATENÇÃO:</strong> Caso o Telegram não abra, segure o botão ATIVAR → "Abrir no navegador" ou copie o link!
+    </div>
+</section>
 </body>
 </html>
