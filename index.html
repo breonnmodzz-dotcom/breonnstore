@@ -1,205 +1,378 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BREONN STORE</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breonn Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    background: #0a0a0a;
-    color: #fff;
-    font-family: 'Segoe UI', -apple-system, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: #0a0a0f;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(120, 40, 200, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 180, 255, 0.1) 0%, transparent 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-header img {
-    width: 100%; height: 400px; object-fit: cover;
-    filter: brightness(1.05) contrast(1.1);
-}
+        .main-content {
+            width: 100%;
+            max-width: 520px;
+            text-align: center;
+        }
 
-.main-content {
-    max-width: 1800px; margin: 0 auto; padding: 80px 30px;
-    text-align: center;
-}
+        /* ── LOGO / HEADER ── */
+        .logo-area {
+            margin-bottom: 8px;
+        }
 
-h1 {
-    font-size: clamp(3.5rem, 10vw, 6rem);
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 20px;
-    text-shadow: 0 0 40px #ff6200;
-    animation: glowOrange 2s ease-in-out infinite alternate;
-}
+        .logo-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #a855f7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+        }
 
-@keyframes glowOrange {
-    from { text-shadow: 0 0 20px #ff6200, 0 0 40px #ff6200; }
-    to { text-shadow: 0 0 30px #ff6200, 0 0 60px #ff6200, 0 0 80px #ff6200; }
-}
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #c084fc, #60a5fa, #c084fc);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s infinite linear;
+            text-shadow: none;
+        }
 
-.subtitle {
-    color: #ccc; font-size: clamp(1.3rem, 3vw, 1.8rem);
-    font-weight: 300; margin-bottom: 60px;
-}
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
 
-.plans-container {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 40px; width: 100%;
-}
+        .subtitle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 6px;
+            margin-bottom: 36px;
+        }
 
-.plan-card {
-    background: #1a1a1a; 
-    border: 2px solid #333;
-    border-radius: 24px;
-    padding: 60px 40px;
-    flex: 1 1 380px; /* CHAVE: expande pra preencher! */
-    max-width: 420px;
-    transition: all 0.4s ease;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
+        .subtitle span {
+            color: #a78bfa;
+            font-weight: 600;
+        }
 
-.plan-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 6px; background: linear-gradient(90deg, #ff6200, #ff8c42, #ff6200);
-    border-radius: 22px 22px 0 0; opacity: 0.7;
-}
+        /* ── CARDS ── */
+        .plans-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
 
-.plan-card:hover {
-    transform: translateY(-25px);
-    border-color: #ff6200;
-    box-shadow: 0 40px 100px rgba(255,98,0,0.3);
-}
+        .plan-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
 
-.duration {
-    font-size: clamp(2.8rem, 8vw, 4rem);
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 35px;
-    text-shadow: 0 0 20px #ff6200;
-}
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.07), rgba(59, 130, 246, 0.07));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.buy-btn {
-    display: block; width: 100%;
-    padding: 20px 30px;
-    background: linear-gradient(135deg, #ff6200, #ff8c42);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 1.3rem;
-    border-radius: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(255,98,0,0.4);
-    transition: all 0.3s ease;
-}
+        .plan-card:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.15);
+        }
 
-.buy-btn:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 25px 60px rgba(255,98,0,0.6);
-    color: #fff;
-}
+        .plan-card:hover::before {
+            opacity: 1;
+        }
 
-.telegram-section {
-    margin: 80px 0; padding: 40px 0;
-}
+        /* Badge "POPULAR" no card de 7 dias */
+        .plan-card.popular {
+            border-color: rgba(168, 85, 247, 0.4);
+            background: rgba(168, 85, 247, 0.07);
+        }
 
-.telegram-btn {
-    display: inline-block;
-    padding: 25px 60px;
-    background: #000;
-    border: 4px solid #ff6200;
-    color: #ff6200;
-    font-weight: 900;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-decoration: none;
-    border-radius: 50px;
-    box-shadow: 0 20px 50px rgba(255,98,0,0.3);
-    transition: all 0.4s ease;
-}
+        .popular-badge {
+            position: absolute;
+            top: -1px;
+            right: 16px;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 0 0 8px 8px;
+            text-transform: uppercase;
+        }
 
-.telegram-btn:hover {
-    background: linear-gradient(135deg, #ff6200, #ff8c42);
-    color: #fff;
-    transform: translateY(-8px);
-    box-shadow: 0 35px 70px rgba(255,98,0,0.5);
-}
+        .plan-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            z-index: 1;
+        }
 
-.help-box {
-    background: rgba(255,98,0,0.1);
-    border: 2px solid rgba(255,98,0,0.3);
-    border-radius: 20px;
-    padding: 40px;
-    margin: 60px 0;
-    color: #fff;
-    font-size: 1.1rem;
-    backdrop-filter: blur(15px);
-}
+        .plan-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
 
-.help-box strong { color: #ff6200; }
+        .duration {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            letter-spacing: 0.5px;
+        }
 
-/* RESPONSIVO QUE PREENCHE TUDO */
-@media (max-width: 1400px) { .plans-container { gap: 35px; } }
-@media (max-width: 1100px) { 
-    .plans-container { flex-direction: column; align-items: center; gap: 45px; }
-    .plan-card { max-width: 450px; }
-}
-@media (max-width: 768px) {
-    .main-content { padding: 60px 20px; }
-    .plan-card { padding: 50px 30px; flex: 1 1 350px; }
-}
-@media (max-width: 480px) {
-    .plan-card { margin: 0 15px; padding: 45px 25px; }
-}
-</style>
+        .duration-sub {
+            font-size: 0.72rem;
+            color: #64748b;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* ── BOTÃO COMPRAR ── */
+        .buy-btn {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 10px 22px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(135deg, #9333ea, #6366f1);
+            box-shadow: 0 6px 25px rgba(124, 58, 237, 0.55);
+            transform: scale(1.04);
+        }
+
+        .buy-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ── TELEGRAM ── */
+        .telegram-section {
+            margin-bottom: 20px;
+        }
+
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: linear-gradient(135deg, #0088cc, #006faa);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 13px 32px;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 136, 204, 0.5);
+            background: linear-gradient(135deg, #00a0ed, #0088cc);
+        }
+
+        /* ── HELP BOX ── */
+        .help-box {
+            background: rgba(234, 179, 8, 0.07);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            border-radius: 14px;
+            padding: 16px 20px;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            text-align: left;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .help-box .help-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .help-box strong {
+            color: #fbbf24;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            margin-top: 28px;
+            font-size: 0.72rem;
+            color: #334155;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 400px) {
+            h1 { font-size: 1.9rem; }
+            .plan-card { padding: 15px 18px; }
+            .buy-btn { padding: 9px 16px; font-size: 0.75rem; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <img src="banner.jpg" alt="BREONN STORE">
-</header>
-
 <div class="main-content">
-    <h1>BREONN STORE</h1>
-    <p class="subtitle">Pato Team - Escolha seu período</p>
 
+    <!-- HEADER -->
+    <div class="logo-area">
+        <i class="fa-solid fa-store logo-icon"></i>
+        <h1>BREONN STORE</h1>
+        <p class="subtitle">🦆 <span>Pato Team</span> — Escolha seu período</p>
+    </div>
+
+    <!-- PLANOS -->
     <div class="plans-container">
+
         <div class="plan-card">
-            <div class="duration">1 Dia</div>
-            <a class="buy-btn" href="https://go.tribopay.com.br/yklp5?affh=x5wgclgrn0" target="_blank" rel="noopener">COMPRAR</a>
+            <div class="plan-info">
+                <div class="plan-icon">⚡</div>
+                <div>
+                    <div class="duration">1 Dia</div>
+                    <div class="duration-sub">Acesso rápido</div>
+                </div>
+            </div>
+            <a class="buy-btn" href="https://go.tribopay.com.br/yklp5?affh=x5wgclgrn0" target="_blank" rel="noopener">
+                <i class="fa-solid fa-cart-shopping"></i> COMPRAR
+            </a>
         </div>
+
         <div class="plan-card">
-            <div class="duration">3 Dias</div>
-            <a class="buy-btn" href="https://go.tribopay.com.br/zo7dl?affh=hhveq7ou8t" target="_blank" rel="noopener">COMPRAR</a>
+            <div class="plan-info">
+                <div class="plan-icon">🔥</div>
+                <div>
+                    <div class="duration">3 Dias</div>
+                    <div class="duration-sub">Acesso estendido</div>
+                </div>
+            </div>
+            <a class="buy-btn" href="https://go.tribopay.com.br/zo7dl?affh=hhveq7ou8t" target="_blank" rel="noopener">
+                <i class="fa-solid fa-cart-shopping"></i> COMPRAR
+            </a>
         </div>
-        <div class="plan-card">
-            <div class="duration">7 Dias</div>
-            <a class="buy-btn" href="https://go.tribopay.com.br/cqclz?affh=wrh4k07eft" target="_blank" rel="noopener">COMPRAR</a>
+
+        <div class="plan-card popular">
+            <div class="popular-badge">⭐ Popular</div>
+            <div class="plan-info">
+                <div class="plan-icon">🚀</div>
+                <div>
+                    <div class="duration">7 Dias</div>
+                    <div class="duration-sub">Melhor custo-benefício</div>
+                </div>
+            </div>
+            <a class="buy-btn" href="https://go.tribopay.com.br/cqclz?affh=wrh4k07eft" target="_blank" rel="noopener">
+                <i class="fa-solid fa-cart-shopping"></i> COMPRAR
+            </a>
         </div>
+
         <div class="plan-card">
-            <div class="duration">15 Dias</div>
-            <a class="buy-btn" href="https://go.tribopay.com.br/dqdqq3dsif?affh=wxku54jbmb" target="_blank" rel="noopener">COMPRAR</a>
-       </div>
-        <div class="plan-card">
-            <div class="duration">30 Dias</div>
-            <a class="buy-btn" href="https://go.tribopay.com.br/i8qvxtthwf?affh=hsub5toe4i" target="_blank" rel="noopener">COMPRAR</a>
+            <div class="plan-info">
+                <div class="plan-icon">💎</div>
+                <div>
+                    <div class="duration">15 Dias</div>
+                    <div class="duration-sub">Acesso premium</div>
+                </div>
+            </div>
+            <a class="buy-btn" href="https://go.tribopay.com.br/dqdqq3dsif?affh=wxku54jbmb" target="_blank" rel="noopener">
+                <i class="fa-solid fa-cart-shopping"></i> COMPRAR
+            </a>
         </div>
+
+        <div class="plan-card">
+            <div class="plan-info">
+                <div class="plan-icon">👑</div>
+                <div>
+                    <div class="duration">30 Dias</div>
+                    <div class="duration-sub">Acesso completo mensal</div>
+                </div>
+            </div>
+            <a class="buy-btn" href="https://go.tribopay.com.br/i8qvxtthwf?affh=hsub5toe4i" target="_blank" rel="noopener">
+                <i class="fa-solid fa-cart-shopping"></i> COMPRAR
+            </a>
+        </div>
+
     </div>
 
+    <!-- TELEGRAM -->
     <div class="telegram-section">
-        <a class="telegram-btn" href="https://t.me/breonnmodz" target="_blank" rel="noopener">Falar no Telegram</a>
+        <a class="telegram-btn" href="https://t.me/breonnmodz" target="_blank" rel="noopener">
+            <i class="fa-brands fa-telegram" style="font-size:1.2rem;"></i>
+            Falar no Telegram
+        </a>
     </div>
 
+    <!-- HELP -->
     <div class="help-box">
-        📱 <strong>Problema no Telegram?</strong><br>
-        Segure o botão "COMPRAR" → <strong>"Abrir no navegador"</strong> ou copie o link e abra no Chrome!
+        <span class="help-icon">📱</span>
+        <div>
+            <strong>Problema no Telegram?</strong><br>
+            Segure o botão <strong>"COMPRAR"</strong> → <em>"Abrir no navegador"</em> ou copie o link e abra no <strong>Chrome</strong>!
+        </div>
     </div>
+
+    <div class="footer">© 2025 Breonn Store · Todos os direitos reservados</div>
+
 </div>
 
 </body>
